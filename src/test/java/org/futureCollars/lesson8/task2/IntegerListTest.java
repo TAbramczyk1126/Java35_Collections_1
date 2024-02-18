@@ -38,7 +38,7 @@ public class IntegerListTest {
 
     @ParameterizedTest
     @CsvSource({"0, 5", "1, 10", "2, 15", "3, 18"})
-    void testRemove(int index, int expectedValue) {
+    void shouldAdd4ElementsAndDelete1AndDisplayActualSize(int index, int expectedValue) {
         //given
         integerList.add(5);
         integerList.add(10);

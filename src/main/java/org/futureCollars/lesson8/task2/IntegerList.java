@@ -6,58 +6,58 @@ public class IntegerList implements OwnList {
 
     private static final int DEFAULT_SIZE = 10;
 
-    private int size;
+    private int actualSize;
 
     private Integer[] array_int;
 
     public IntegerList() {
         this.array_int = new Integer[DEFAULT_SIZE];
-        this.size = 0;
+        this.actualSize = 0;
     }
 
     @Override
     public int size() {
-        return size;
+        return actualSize;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return actualSize == 0;
     }
 
     @Override
     public void add(Integer element) {
-        ensureCapacity(size + 1);
-        array_int[size++] = element;
+        ensureCapacity(actualSize + 1);
+        array_int[actualSize++] = element;
     }
 
     @Override
     public Integer get(int i) {
-        if (i < 0 || i >= size) {
-            throw new IndexOutOfBoundsException("Index: " + i + ", Size: " + size);
+        if (i < 0 || i >= actualSize) {
+            throw new IndexOutOfBoundsException("Index: " + i + ", Out of array size: " + actualSize);
         }
         return array_int[i];
     }
 
     @Override
     public void add(int index, Integer element) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        if (index < 0 || index > actualSize) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Out of array sie: " + actualSize);
         }
-        ensureCapacity(size + 1);
-        System.arraycopy(array_int, index, array_int, index + 1, size - index);
+        ensureCapacity(actualSize + 1);
+        System.arraycopy(array_int, index, array_int, index + 1, actualSize - index);
         array_int[index] = element;
-        size++;
+        actualSize++;
     }
 
     @Override
     public Integer remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        if (index < 0 || index >= actualSize) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", out of array size: " + actualSize);
         }
         Integer removedElement = array_int[index];
-        System.arraycopy(array_int, index + 1, array_int, index, size - index - 1);
-        array_int[--size] = null;
+        System.arraycopy(array_int, index + 1, array_int, index, actualSize - index - 1);
+        array_int[--actualSize] = null;
         return removedElement;
     }
 

@@ -1,4 +1,4 @@
-package org.futureCollars.Lesson8.task1;
+package org.futureCollars.lesson8.task1;
 
 import java.util.*;
 

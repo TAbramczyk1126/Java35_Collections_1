@@ -8,10 +8,10 @@ public class IntegerList implements OwnList {
 
     private int actualSize;
 
-    private Integer[] array_int;
+    private Integer[] intArray;
 
     public IntegerList() {
-        this.array_int = new Integer[DEFAULT_SIZE];
+        this.intArray = new Integer[DEFAULT_SIZE];
         this.actualSize = 0;
     }
 
@@ -28,7 +28,7 @@ public class IntegerList implements OwnList {
     @Override
     public void add(Integer element) {
         ensureCapacity(actualSize + 1);
-        array_int[actualSize++] = element;
+        intArray[actualSize++] = element;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class IntegerList implements OwnList {
         if (i < 0 || i >= actualSize) {
             throw new IndexOutOfBoundsException("Index: " + i + ", Out of array size: " + actualSize);
         }
-        return array_int[i];
+        return intArray[i];
     }
 
     @Override
@@ -45,8 +45,8 @@ public class IntegerList implements OwnList {
             throw new IndexOutOfBoundsException("Index: " + index + ", Out of array sie: " + actualSize);
         }
         ensureCapacity(actualSize + 1);
-        System.arraycopy(array_int, index, array_int, index + 1, actualSize - index);
-        array_int[index] = element;
+        System.arraycopy(intArray, index, intArray, index + 1, actualSize - index);
+        intArray[index] = element;
         actualSize++;
     }
 
@@ -55,19 +55,19 @@ public class IntegerList implements OwnList {
         if (index < 0 || index >= actualSize) {
             throw new IndexOutOfBoundsException("Index: " + index + ", out of array size: " + actualSize);
         }
-        Integer removedElement = array_int[index];
-        System.arraycopy(array_int, index + 1, array_int, index, actualSize - index - 1);
-        array_int[--actualSize] = null;
+        Integer removedElement = intArray[index];
+        System.arraycopy(intArray, index + 1, intArray, index, actualSize - index - 1);
+        intArray[--actualSize] = null;
         return removedElement;
     }
 
     private void ensureCapacity(int minCapacity) {
-        if (minCapacity > array_int.length) {
-            int newCapacity = array_int.length * 2;
+        if (minCapacity > intArray.length) {
+            int newCapacity = intArray.length * 2;
             if (newCapacity < minCapacity) {
                 newCapacity = minCapacity;
             }
-            array_int = Arrays.copyOf(array_int, newCapacity);
+            intArray = Arrays.copyOf(intArray, newCapacity);
         }
     }
 }
